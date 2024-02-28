@@ -1,5 +1,6 @@
 from os import getenv
 import uvicorn
+
 from fastapi import FastAPI
 from bs4 import BeautifulSoup
 import requests
