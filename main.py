@@ -3,7 +3,19 @@ import uvicorn
 from fastapi import FastAPI
 from bs4 import BeautifulSoup
 import requests
+from fastapi.middleware.cors import CORSMiddleware
+import os
+
 app = FastAPI()
+
+# CORS (Cross-Origin Resource Sharing) middleware configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this based on your CORS requirements
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -47,5 +59,5 @@ async def getData(username: str):
 
 
 if __name__ == '__main__':
-    port = int(getenv("PORT", 8000))
+    port = int(os.getenv("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
