@@ -21,7 +21,7 @@ app.add_middleware(
 
 @app.get("/")
 async def home():
-    return ("Thank you for accessing the LeetCode-API. Comprehensive documentation is available on our GitHub repository: https://github.com/SAKTHIPRAKASH28/LeetCode-API. To retrieve user-specific data, please utilize the /username route.")
+    return {"message":Thank you for accessing the LeetCode-API. Comprehensive documentation is available on our GitHub repository: https://github.com/SAKTHIPRAKASH28/LeetCode-API. To retrieve user-specific data, please utilize the /username route."}
 
 
 @app.get('/{username}')
