@@ -1,6 +1,6 @@
 from os import getenv
 import uvicorn
-
+from typing import Optional
 from fastapi import FastAPI
 from bs4 import BeautifulSoup
 import requests
@@ -21,11 +21,11 @@ app.add_middleware(
 
 @app.get("/")
 async def home():
-    return {"message":"Thank you for accessing the LeetCode-API. Comprehensive documentation is available on our GitHub repository: https://github.com/SAKTHIPRAKASH28/LeetCode-API. To retrieve user-specific data, please utilize the /username route."}
+    return {"message": "Thank you for accessing the LeetCode-API. Comprehensive documentation is available on our GitHub repository: https://github.com/SAKTHIPRAKASH28/LeetCode-API. To retrieve user-specific data, please utilize the /username route."}
 
 
 @app.get('/{username}')
-async def getData(username: str, query: str | None = None):
+async def getData(username: str, query: Optional[str] = None):
     url = f'https://leetcode.com/{username}/'
     page = requests.get(url)
 
