@@ -25,7 +25,7 @@ async def home():
 
 
 @app.get('/{username}')
-async def getData(username: str):
+async def getData(username: str, query: str | None = None):
     url = f'https://leetcode.com/{username}/'
     page = requests.get(url)
 
@@ -53,7 +53,9 @@ async def getData(username: str):
 
 
         }
-        return data
+        if not query:
+            return data
+        return {query: data[query]}
 
     else:
         return {"error": f"No user with the user name {username} found!"}
