@@ -4,11 +4,12 @@ from typing import Optional
 from fastapi import FastAPI
 from bs4 import BeautifulSoup
 import httpx
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
 app = FastAPI(title="Leet Code Scraper",
-              description="A web scraper for getting user details and progress from LeetCode.", contact={"name": "Sakthi Prakash", "email": "sakthiprakash403@gmail.com"}, version="0.0.1")
+              description="A web scraper for getting user details and progress from LeetCode.", contact={"name": "Sakthi Prakash", "email": "sakthiprakash403@gmail.com", "url": "https://github.com/SAKTHIPRAKASH28/LeetCode-API"}, version="0.0.1")
 
 # CORS (Cross-Origin Resource Sharing) middleware configuration
 app.add_middleware(
@@ -22,7 +23,7 @@ app.add_middleware(
 
 @app.get("/")
 async def home():
-    return {"message": "Thank you for accessing the LeetCode-API. Comprehensive documentation is available on our GitHub repository: https://github.com/SAKTHIPRAKASH28/LeetCode-API. To retrieve user-specific data, please utilize the /username route."}
+    return RedirectResponse("/docs")
 
 
 @app.get('/{username}')
