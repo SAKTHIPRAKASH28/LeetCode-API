@@ -3,7 +3,7 @@ import uvicorn
 from typing import Optional
 from fastapi import FastAPI
 from bs4 import BeautifulSoup
-import requests
+import httpx
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
@@ -28,7 +28,8 @@ async def home():
 @app.get('/{username}')
 async def getData(username: str, query: Optional[str] = None):
     url = f'https://leetcode.com/{username}/'
-    page = requests.get(url)
+    async with httpx.AsyncClient() as client:
+        page = await client.get(url)
 
     if page.status_code == 200:
         soup = BeautifulSoup(page.content, 'html.parser')
