@@ -7,7 +7,8 @@ import requests
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
-app = FastAPI()
+app = FastAPI(title="Leet Code Scraper",
+              description="A web scraper for getting user details and progress from LeetCode.", contact={"name": "Sakthi Prakash", "email": "sakthiprakash403@gmail.com"}, version="0.0.1")
 
 # CORS (Cross-Origin Resource Sharing) middleware configuration
 app.add_middleware(
